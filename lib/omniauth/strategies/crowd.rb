@@ -34,9 +34,7 @@ module OmniAuth
         creds = session.delete 'omniauth.crowd'
         return fail!(:no_credentials) unless creds
         validator = CrowdValidator.new(@configuration, creds['username'], creds['password'])
-        @user_info = validator.user_info
-
-        puts "User info: #{@user_info}"
+        @user_info = validator.user_info        
         
         return fail!(:invalid_credentials) if @user_info.nil? || @user_info.empty?
     
